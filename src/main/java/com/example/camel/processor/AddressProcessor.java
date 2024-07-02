@@ -10,7 +10,7 @@ import org.apache.camel.Processor;
 public class AddressProcessor implements Processor {
     @Override
     public void process(Exchange exchange) throws Exception {
-        InboundAddress data = exchange.getIn().getBody(InboundAddress.class);
-        exchange.getIn().setBody(new OutboundAddress(data.getCity(), data.getState(), data.getZip()));
+        String data = exchange.getIn().getBody(String.class);
+        //exchange.getIn().setBody(new OutboundAddress(data.getCity(), data.getState(), data.getZip()));
     }
 }

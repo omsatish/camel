@@ -43,9 +43,10 @@ public class LegacyFileTransferTest {
 
     @Test
     public void testLegacyFileTransferMockedInput() throws Exception {
-        String mockedBody = "Satish, 1, Amz, UP, 23221";
-        mockEndpoint.expectedBodiesReceived("OutboundAddress(city= Amz, state= UP, zip= 23221)");
-        mockEndpoint.expectedMessageCount(1);
+        String data = """
+                name, house_number, city, state, zip
+                Satish, 1, Amz, UP, 23221
+                """;
 
         AdviceWith.adviceWith(camelContext, "legacyFileTransferId",
                 routBuilder -> {
@@ -54,7 +55,11 @@ public class LegacyFileTransferTest {
                 });
 
         camelContext.start();
-        template.sendBody("direct:mockStart", mockedBody);
+
+        template.sendBody("direct:mockStart", data);
+
+        mockEndpoint.expectedBodiesReceived("OutboundAddress(city= Amz, state= UP, zip= 23221)");
+        mockEndpoint.expectedMessageCount(1);
         mockEndpoint.assertIsSatisfied();
 
     }
