@@ -2,7 +2,7 @@
         xsi:schemaLocation="http://www.beanio.org/2012/03 http://www.beanio.org/2012/03/mapping.xsd">
 
     <stream name="addressStream" format="csv">
-        <record name="address" class="com.example.camel.beans.Address">
+        <record name="address" class="com.example.camel.beans.InboundAddress">
             <field name="name"/>
             <field name="houseNumber"/>
             <field name="city"/>

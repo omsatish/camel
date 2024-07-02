@@ -1,7 +1,7 @@
 package com.example.camel.component;
 
-import com.example.camel.beans.Address;
-import com.example.camel.processor.InboundAddressProcessor;
+import com.example.camel.processor.AddressProcessor;
+import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.dataformat.beanio.BeanIODataFormat;
 import org.slf4j.Logger;
@@ -22,9 +22,10 @@ public class LegacyFileTransfer extends RouteBuilder {
                 .routeId("legacyFileTransferId")
                 .split(body().tokenize("\n", 1, true))
                 .unmarshal(addressDataFormat)
-                    .process(new InboundAddressProcessor())
-                    .convertBodyTo(String.class)
-                    .to("file:data/output?fileName=outputFile.csv&fileExist=append&appendChars=\\n")
+                .process(new AddressProcessor())
+                .log(LoggingLevel.INFO, "processed body ${body}")
+                .convertBodyTo(String.class)
+                .to("file:data/output?fileName=outputFile.csv&fileExist=append&appendChars=\\n")
                 .end();
 
     }

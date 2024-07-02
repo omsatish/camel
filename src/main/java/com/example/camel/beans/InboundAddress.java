@@ -3,7 +3,7 @@ package com.example.camel.beans;
 import lombok.Data;
 
 @Data
-public class Address {
+public class InboundAddress {
     private String name;
     private String houseNumber;
     private String city;
