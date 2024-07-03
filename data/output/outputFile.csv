@@ -5,3 +5,18 @@
     "state": "UP",
     "zip": "12345"
 }
+{
+    "name": "Satish",
+    "houseNumber": "1",
+    "city": "Noida",
+    "state": "UP",
+    "zip": "12345"
+}
+{
+    "name": "Satish",
+    "houseNumber": "1",
+    "city": "Noida",
+    "state": "UP",
+    "zip": "12345"
+}
+OutboundAddress(city=Noida, state=UP, zip=12345)
